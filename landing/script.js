@@ -63,7 +63,7 @@ $(".text").click(function() {
 
 basicTimeline.complete = function() {
   setTimeout(function() {
-    window.location.href = 'index.html'; // Redirect to index.html after a 2-second delay
+    window.location.href = 'landing.html'; // Redirect to index.html after a 2-second delay
   }, 500); // Delay of 2000 milliseconds (2 seconds)
 };
 
