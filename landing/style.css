@@ -1,0 +1,77 @@
+body {
+  background:linear-gradient(-45deg, #f79cc5, #fce4ec);
+  animation: gradient 15s ease infinite;
+  background-size: 500% 500%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+}
+
+.button {
+  background: white;
+  height: 80px;
+  width: 200px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  border: 2px solid #f06292; /* Pink border */
+  border-radius: 15px;
+}
+
+.text {
+  font: bold 1.25rem/1 poppins;
+  color: #f79cc5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-52%);
+  left: 0;
+  right: 0;
+}
+
+.progress-bar {
+  position: absolute;
+  height: 10px;
+  width: 0;
+  right: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 200px;
+  transform: translateY(-50%) translateX(-50%);
+  background: #f79cc5;
+}
+
+svg {
+  width: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  left: 50%;
+  right: 0;
+}
+
+.check {
+  fill: none;
+  stroke: #f79cc5;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
