@@ -1,30 +1,1040 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Ava Only!</title>
-  <link rel="stylesheet" href="./landing/style.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anniversary Cards!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  </head>  
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Raleway', sans-serif;
+        background: linear-gradient(-45deg, #fce4ec, #f79cc5);
+        animation: gradient 15s ease infinite;
+        background-size: 500% 500%;
+        overflow: hidden; /* Hide overflowing snowflakes */
+        cursor: url('fgtasbpinkhearts_normalselect.cur'), auto;
+        
+      }
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
+      @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+      
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: relative; /* Position relative for absolute snowflakes */
+      }
+
+      #showNavBarBtn {
+        align-items: center;
+        width: 150px;
+        display:flex;
+        flex-direction: column;
+    position: fixed;
+        left:20px;
+   top:1%;
+    z-index: 9999; 
+    background-color: #f06292;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: url('fgtasbpinkhearts_linkselect.cur'), pointer;
+    opacity:0.5;
+  }
+
+  #showNavBarBtn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .navigation-bar {
+  display: flex;
+  font-size: 30px;
+  position: fixed;
+  left: 0px;
+  top: 50px;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Added transition for opacity and transform */
+  flex-direction: column;
+  background-color: #fff;
+  pointer-events: none; /* Prevent interaction when hidden */
+  
+}
+
+.navigation-bar.active {
+  opacity: 1;
+  transform: translateY(0); /* Translate to show */
+  pointer-events: auto; /* Enable interaction when visible */
+}
+
+      .navigation-bar button {
+        font-weight: 700;
+        font-size: 15px;
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        background-color: #f06292;
+        color: white;
+        border-radius: 5px;
+        cursor: url('fgtasbpinkhearts_linkselect.cur'), pointer;
+        opacity:0.5;
+      }
+      .navigation-bar button:hover {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+
+      .navigation-bar button.active {
+        border-radius: 5px;
+        filter: drop-shadow(0 0 2rem pink);
+        background-color: white;
+        color: #f06292;
+        opacity: 1;
+        font-weight: 700;
+      }
+
+      .postcard {
+        display:none;
+        width: 85%; /* Adjusted size */
+        max-width: 750px; /* Maximum width */
+        height: 35%;
+        border: 2px solid #f06292; /* Pink border */
+        border-radius: 15px;
+        margin: 20px;
+        padding: 20px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        background: repeating-linear-gradient(
+  #f8f8f8,
+  #f8f8f8 20px,
+  #ffffff 20px,
+  #ffffff 40px
+);
+        text-align: center; /* Center text */
+        position: relative;
+        filter: drop-shadow(0 0 1rem pink);
+        font-weight: 700;
+        opacity:0.9;
+        cursor: url('fgtasbpinkhearts_linkselect.cur'), pointer;
+      }
+      
+      .animate-on-load {
+  animation: fadeInAnimation 3s ease forwards;
+}
 
 
-<main>
-  <div class="button">
+
+
+
+      .heart-icon {
+  position: absolute;
+  top: -80px; /* Adjust position */
+  right: -45px; /* Adjust position */
+  font-size: 120px; /* Adjust size */
+  color: #f79cc5; /* Adjust color */
+  transform: rotate(20deg); /* Rotate the heart icon */
+  filter: drop-shadow(0 0 1rem white);
+  animation: popin 0.5s ease-out;
+  animation: heartBeats 1s infinite;
+ 
+}
+
+.heart-icon2 {
+  position: absolute;
+  bottom: -80px;
+left: -45px;
+  font-size: 120px; /* Adjust size */
+  color: #e9a9c7; /* Adjust color */
+  transform: rotate(-20deg); /* Rotate the heart icon */
+  filter: drop-shadow(0 0 1rem white);
+  animation: popin 0.5s ease-out;
+  animation: heartBeatss 1s infinite;
+ 
+}
+
+
+
+@keyframes heartBeats {
+      0% {
+        transform: scale(1)
+        rotate(20deg);
+      }
+      50% {
+        transform: scale(1.3)
+        rotate(20deg);
+      }
+      100% {
+        transform: scale(1)
+        rotate(20deg);
+      }
+    }
+
+    @keyframes heartBeatss {
+      0% {
+        transform: scale(1)
+        rotate(-20deg);
+      }
+      50% {
+        transform: scale(1.3)
+        rotate(-20deg);
+      }
+      100% {
+        transform: scale(1)
+        rotate(-20deg);
+      }
+    }
+
+@keyframes popin {
+  0% {
+    transform: scale(0) rotate(20deg); /* Initial scale and rotation */
+  }
+  50% {
+    transform: scale(1.2) rotate(20deg); /* Scaled with rotation */
+  }
+  100% {
+    transform: scale(1) rotate(20deg); /* Return to normal scale and rotation */
+  }
+}
+
+      .firstImage {
+        width: 40%;
+        height: 40%;
+        display: inline-block;
+
+        margin: 0 auto;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        filter: drop-shadow(0 0 1rem #ff85a2) opacity(90%);
+      }
+
+      .firstScreenshot {
+        display: inline-block;
+        width: 40%;
+        height: 40%;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        filter: drop-shadow(0 0 1rem #ff85a2) opacity(90%);
+      }
+
+      .callPic {
+        display: inline-block;
+        width: 33%;
+        height: 20%;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        filter: drop-shadow(0 0 1rem #ff85a2) opacity(90%);
+      }
+
+      .lastPic {
+        display: inline-block;
+        width: 40%;
+        height: 30%;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        filter: drop-shadow(0 0 1rem #ff85a2) opacity(90%);
+      }
+
+      .secondScreenshot {
+        width: 80%;
+        height: 80%;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        filter: drop-shadow(0 0 1rem #ff85a2) opacity(90%);
+      }
+
+      .postcard:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 5px palevioletred;
+      }
+
+      .text {
+        color: #f06292;
+      }
+
+      .examp {
+        position: fixed;
+        height: 2500px;
+        width: 1000px;
+        margin: auto;
+        height: 1000px;
+      }
+
+      #hearts .flake {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        color: #fffacd;
+        text-shadow: 1 1 1 rgba(255, 255, 255, 1);
+        filter: drop-shadow(0 0 0.75rem pink);
+        user-select: none;
+        animation: initialScale 2s forwards;
+}
+
+/* Define the keyframes for the initial state */
+@keyframes initialScale {
+  from {
+    /* Define the initial scale */
+    transform: scale(1);
+  }
+  to {
+    /* Define the final scale */
+    transform: scale(1);
+  }
+}
+
+/* Define the keyframes for the hover effect */
+@keyframes bigScale {
+  0% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(5) rotate(-360deg);
+        opacity: 0.7;
+        
+      }
+      100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+  
+      }
+    }
+
+/* Apply the animation when the 'hovered' class is present */
+#hearts .flake.hovered {
+  animation-name: bigScale;
+  animation-duration: 1s;
+}
+
+
+      .postcard1img {
+        height: 30%;
+        width: 20%;
+        filter: drop-shadow(0 0 0.75rem pink);
+      }
+
+      .clicked-animation {
+        animation-name: scaleAnimation;
+        animation-duration: 0.4s;
+      }
+
+      @keyframes scaleAnimation {
+        0% {
+          transform: scale(1);
+          
+        }
+        50% {
+          transform: scale(1.3);
+         
+        }
+        100% {
+          transform: scale(1);
+         
+        }
+      }
+
+      .text {
+        opacity: 0;
+        animation-name: fadeInAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        text-shadow: 1px 1px 1px pink, 0 0 1em pink, 0 0 0.2em pink;
+      }
+
+      @keyframes fadeInAnimation {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 0.9;
+          transform: translateY(0);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+    body {
+      padding-bottom: 70px; /* Adjust to accommodate the navigation bar */
+    }
+
+    .postcard {
+      width: 90%;
+      max-width: none;
+      height: auto;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .firstImage {
+      width: 60%;
+      height: auto;
+    }
+
+    /* Adjust other styles for smaller screens here */
+
+    .navigation-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .navigation-bar button {
+      position: relative;
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #f06292;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+      .heart {
+        color: #f06292;
+      position: absolute;
+      font-size: 40px;
+      width: 20px;
+      height: 20px;
+      animation: heartBeat 1s infinite;
+      
+    }
+
+    @keyframes heartBeat {
+      0% {
+        transform: scale(1) ();
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes showNavBar {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  
+  @keyframes hideNavBar {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+  }
+
+  .not-selectable {
+  user-select: none;
+}
+    </style>
+</html>
+<body onmousedown="return false" onselectstart="return false">
+  <div class="container">
+    <div id="hearts">
+      <div class="examp"></div>
+    </div>
+    <div class="postcard" id="firstPostcard">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <img class="firstImage" src="your-image-url.webp" alt="heart" />
+      <div class="text">
+        <h2>From: Joxa's heart</h2>
+        <h2>To: Ava's heart</h2>
+        <h3>Date: January 7th, 2024</h3>
+        <h3>Title: 365 Days Later</h3>
+      </div>
+    </div>
+
+    <div class="postcard" id="secondPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>HAPPY 1 YEAR BABY!!!!</h2>
+        <h3>This is a little letter from my heart to yours so,</h3>
+        <h3>go ahead and lean back, grab your slice of cake and</h3>
+        <h3>let your heart do the reading baby</h3>
+        <h3>;3</h3>
+        <img class="postcard1img" src="zzzz.webp" />
+      </div>
+    </div>
+
+    <div class="postcard" id="secondoneCard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+          <h2>7th of January</h2>
+          <h3>Today is one of the most important dates for me because it is the date</h3>
+          <h3>that you and I, started something that other people could only dream of.</h3>
+          <h3> A one of a kind connection.</h3>
+          <h3>A relationship straight out of a dream.</h3>
+          <h2>A neverending love.</h2>
+          <img class="firstScreenshot" src="ApplicationFrameHost_Pj2ggV8kmk.webp">
+      </div>
+    </div>
     
-    <div class="text">Log In!</div>
-  </div>
-  <div class="progress-bar"></div>
-  <svg x="0px" y="0px"
-	 viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
-    <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"/>
-  </svg>
-</main>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js'></script><script  src="./landing/script.js"></script>
 
+    <div class="postcard" id="thirdPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our First Day</h2>
+        <h3>You and I met on January 7th, 2023 on the most random roblox game ever.</h3>
+        <h3>Joining that random game would prove to be the best decision of my life.</h3>
+        <h3>And that day which I thought was like any other would be the best day of my life.</h3>
+        <h2>All because you were there.</h2>
+        <img class="firstScreenshot" src="RobloxPlayerBeta_4IPFo37rbv.webp" />
+      </div>
+    </div>
+
+    <div class="postcard" id="fourthPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our First Meeting</h2>
+        <h3>When you and I first met, I didn't really think much of it back then.</h3>
+        <h3>I only joined Dan so I could say hi and I thought that was the end of it.</h3>
+        <h3>But you ended up adding me, and we slowly became friends.</h3>
+        <img class="secondScreenshot" src="DiscordCanary_fZJIe2bWrc.webp" />
+      </div>
+    </div>
+
+    <div class="postcard" id="fifthPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our Beginning</h2>
+        <h3>We started as normal friends. As many other couples do.</h3>
+        <h3>But we weren't just 'friends'. I've always felt sort of a connection to you.</h3>
+        <h3>I felt close to you. I felt like you understood me, and that I understood you.</h3>
+        <h3>The more hours we've spent together playing games, listening to music and talking,</h3>
+        <h3>the closer I have felt to you. I've started to like you more and more.</h3>
+        <h3>Learning the type of person you are and getting to know you on a personal level</h3>
+        <h3>made me really happy. I fell in love with what shaped you into what you are today.</h3>
+        <h3>I loved learning more and more about you as you got more comfortable.</h3>
+        <h2>You amazed me.</h2>
+      </div>
+    </div>
+
+    
+    
+    <div class="postcard" id="sixthPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our Adventure</h2>
+        <h3>All this time that we've spent together as friends made me question myself:</h3>
+        <h2>'Why do I like spending my time with you so much?'</h2>
+        <h3>Was it because you made me laugh? Was it because you were funny?</h3>
+        <h3>Cheerful? Happy? Interesting? Supportive? Intelligent? Passionate?</h3>
+        <h3>As I kept wondering about it, it finally clicked inside of my head.</h3>
+        <h3>You were just perfect. You're everything I ever looked for in a girl.</h3>
+        <h3>After I connected the dots, it hit me. I fell in LOVE. Over the internet.</h3>
+        <h3>With someone I've never even seen with my own eyes. I couldn't believe it.</h3>
+        <h2>But it felt so right.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="sevenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our Relationship</h2>
+        <h3>Before I even realized it, months passed, and we started dating. You and I.</h3>
+        <h3>The people who always used to make fun of people online dating? Yeah. That's us.</h3>
+        <h3>It all started with the good night texts, and then the good morning texts.</h3>
+        <h3>And before we even knew it, we were saying 'I love you' to each other.</h3>
+        <h3>It all happened so casually. It felt so natural. Almost surreal.</h3>
+        <h3>We went from playing games together, to listening to music together, </h3>
+        <h3>to telling each other about ourselves, and sending love messages.</h3>
+        <h3>Getting to know you was one of the best experiences I've ever had.</h3>
+        <h2>I adore you.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="eightPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our First Call</h2>
+        <h3>When you and I first met, we never called. It would take months and months</h3>
+        <h3>for us to call. But then we did. Our First Call. I still remember it perfectly.</h3>
+        <h3>The moment I first heard your voice, I was simply in love with it. I mean it.</h3>
+        <h3>That call made think: "Why don't we ever call when we have so much fun together?",</h3>
+        <h2>"Am I.. getting the wrong idea?"</h2>
+        <h3>Turns out, I was wrong. You were insecure about your voice. And I didn't know.</h3>
+        <h3>It upset me. I wish I noticed so I could have said something sooner.</h3>
+        <h3>There was nothing wrong with your voice. Ever. Your voice is perfect.</h3>
+        <h3>But I didn't know you were conscious about it. And we stopped calling for a while.</h3>
+      </div>
+    </div>
+
+    <div class="postcard" id="ninePostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+        <h2>Our Longer Calls</h2>
+        <h3>At first, our calls would be really short and rare. Like really really rare.</h3>
+        <h3>Like once in a month or maybe even TWO months rare. But that all changed.</h3>
+        <h3>As you got comfier speaking to me, we started calling more and I don't think</h3>
+        <h3>you realize how happy it made me when you started asking me to call more often.</h3>
+        <h3>Our calls went from lasting like an hour or two max, to over 4 hours in no time.</h3>
+        <h3>Our calls went from being a once-in-a-month to once-in-a-week and then every day.</h3>
+        <img class = "callPic" src="ApplicationFrameHost_ru9sCclrOL.webp">
+      </div>
+    </div>
+
+    <div class="postcard" id="tenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Sleep Calls</h2>
+       <h3>Before we knew it, time flew by and we started sleeping on calls.
+       That first night when we were calling in bed and you fell asleep on me,
+       I was thinking: "Should I hang up?". And I did. I know it might seem a little odd now but I didn't wanna make you uncomfortable or weirded out by staying on call while you sleep.
+       But it kept happening, one of us would just fall asleep on the other
+       and eventually, we would stop hanging up altogether, right? Well, not really.
+       For a while, we had this rule where we were only allowed to fall asleep
+       on call during weekends. Mostly because you didn't wanna talk with your phone
+       being plugged in. It took a while to convince you that it being plugged in
+       wouldn't make you sound weird. Once we got that out the way, we started falling
+       asleep to each other every night. It became a habit. A safe place for us.
+      I love falling asleep to you and being able to hear you sleep and just knowing that you're there, on the other side of the phone. Sleeping safe and sound. 
+      I was happy being there for you in case you had a bad dream or a nightmare, and you needed someone to talk to in the middle of the night.
+      It made my heart really warm and it let me know that you're safe. Our sleep calls mean a lot to me.
+    </h3>
+  <h2>I love falling asleep to your voice.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="elevenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Conversations</h2>
+       <h3>I think it isn't a secret but I love talking to you. Like I really really love talking to you.</h3>
+       <h3>No matter what we talk about, I just love discussing every single thing with you.</h3>
+       <h3>It can be as casual as us telling each other about our days or as odd as how Jit works.</h3>
+       <h3>I can talk to you about anything. You always have interesting insights into things.</h3>
+       <h3>I love when we both become acoustic and just tell each other the most vile jokes.</h3>
+       <h3>Or when we spend our whole night just laughing at the most random things.</h3>
+       <h3>Or when we make fun of random robloxians. Or when we bully each other.</h3>
+       <h3>And I especially love when we tell each other about our feelings.</h3>
+       <h2>Makes me beyond happy to hear how you feel about me.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="twelvePostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Personalities</h2>
+      <h3>What made me fall in love with you at first was your personality. You as a person.</h3>
+      <h3>I love how we both share the same humor and can make one another laugh so easily.</h3>
+      <h3>I love how affectionate we can be and say 'I love you' over and over again.</h3>
+      <h3>I love how we teach each other about things we don't have much knowledge on.</h3>
+      <h3>I love how we have the same hobbies and are open to trying out new things.</h3>
+      <h3>I love how we always have time for each other, no matter how busy our days are.</h3>
+      <h3>I love how cheerful and positive and easygoing and curious and creative you are.</h3>
+      <h3>I love how you can make me happy just by being there, even if we're doing nothing.</h3>
+      <h2>I love you as a person.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="thirteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Love</h2>
+       <h3>I don't mean to sound generic but when I say I've never loved anyone as much as I've loved you, I mean it. 
+        I love you more then anyone and anything else, Ava. And my 'more' means so many things. I don't mean that I just love you more then you love me,
+        I'm saying I love you more then I love my friends. More then I love cars. More then I love my PC. More then I love games. More then I love money. More then I love chicken.
+        And as long as you love me and feel the same, I will be loving you more and more every day. Our love proved to me that true love does exist. 
+        What I also really love is you showing me how much you love me. I love all the 'I love you more' battles we have. I love all the sleepy 'I love you's that we tell each other.
+        I love all the little things you do for me. All the effort you put in just to make me happy. All the happy and not-so-happy moments we had.
+        I wouldn't want it any other way. It's what proves to me that no matter what happens, we'll still love each other.
+        I love how we make each other wanna be the best version of themselves. I love how we are slowly planning our future together. I love how excited we are to see each other one day.
+       </h3>
+       <h2> I love all of you with all of me.</h2>
+      
+      </div>
+    </div>
+
+    <div class="postcard" id="fourteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Anniversary</h2>
+        <h3>I can't believe it's already been a full year. Time REALLY flew by with you.</h3>
+        <h3>It's safe to say that this year with you has been the best year of my life.</h3>
+        <h3>All the moments we shared, all the memories we created, all the laughs we had.</h3>
+        <h3>They've become the best part of my year. I'm so glad these memories were with you.</h3>
+        <h3>We had some ups and downs, but we always managed to figure it out. And improve.</h3>
+        <h3>And now, after a whole year has passed, I'm 100% sure that you are who I want</h3>
+        <h3>to make memories with for the rest of my life. You're everything I want.</h3>
+        <h3>This anniversary is just a little stepping stone for us. One of many.</h3>
+        <h2>And I cannot wait to experience more and more of them with you.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="fifteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Our Future</h2>
+       <h3>Here, I'd like to address some of our future together. I'm REALLY excited.</h3>
+       <h3>At the way things are going, I have absolutely no doubt that you and I will</h3>
+       <h3>meet up pretty soon. Sure, Italy is still a MAYBE thing for us but even if</h3>
+       <h3>it doesn't happen, there's gonna be so many more occassions for us to see</h3>
+       <h3>each other. Our future is bright and I can see us having each other in our lives.</h3>
+       <h3>Our first stop is Italy though, and words simply CANNOT express how excited I am.</h3>
+       <h3>The day I can kiss you goodnight and hold you as you sleep with no worries will</h3>
+       <h3>be the day I have succeeded in life. And I'm sure that, once I get a stable income</h3>
+       <h3>and can put money on the side, I will be visiting you sososos often. I promisy.</h3>
+       <h3>I cannot wait for summer break so we can spend all our time together again.</h3>
+      </div>
+    </div>
+
+    <div class="postcard" id="sixteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>You As A Person</h2>
+       <h3>Meeting you is definetly the best thing that has ever happened to me.</h3>
+       <h3>You always brighten my day by just being in it. You make me smile effortlessly.</h3>
+       <h3>You always steer me back onto the right track. You're always there to help.</h3>
+       <h3>You're always trying to be better for us. You keep improving every single day.</h3>
+       <h3>You're very compassionate. You can always tell when there's something wrong.</h3>
+       <h3>You're honest and loyal. Not once in this whole year have you made me doubt you.</h3>
+       <h3>You're grateful and giving. You value everything I do and you do so much for me.</h3>
+       <h3>You're a good listener. I love hearing your thoughts on things that I talk about.</h3>
+       <h2>I love everything you do. You're perfect.</h2>
+      </div>
+    </div>
+
+    <div class="postcard" id="seventeenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>You As A Woman</h2>
+       <h3>Ava, all the qualities you posses are simply perfect. Let me explain.</h3>
+       <h3>First of all, the obvious, is that you're extremely beautiful, drop dead goergous.</h3>
+       <h3>You're beautiful through in nd out, starting from your heart and mind, to your looks.</h3>
+       <h3>Your heart is pure. Really loving. Really affectionate. Really kind. Really generous.</h3>
+       <h3>Your mind is ideal. So intelligent. So helpful. So emphatic. So inspiring.</h3>
+       <h3>Your personality is the best. Very funny. Very caring. Very brave. Very creative.</h3>
+       <h3>Your voice is hypnotic. Super feminine. Super soft. Super Soothing. Super warm.</h3>
+       <h3>Your face is just the cutest. Pretty eyes. Pretty cheeks. Pretty lips. Pretty smile.  </h3>
+       <h2>You are just.. flawless.</h2>
+     
+      </div>
+    </div>
+
+    <div class="postcard" id="eighteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>My Little Gift</h2>
+        <h3>Whip your camera app out and scan this for a lil suprise :3</h3>
+        <h3>(don't get mad at me pls)</h3>
+        <img src="qr-code.png" class = "callPic"></img>
+      </div>
+    </div>
+
+    <div class="postcard" id="nineteenPostcard" style="display: none">
+      <div class="heart-icon">&#10084;</div>
+      <div class="heart-icon2">&#10084;</div>
+      <div class="text">
+       <h2>Written By My Heart,</h2>
+       <h2>For The Heart That I,</h2>
+       <h2>Love The Most.</h2>
+       <h1>Happy One Year Baby!</h1>
+       <h3>(i love you from the bottom of my heart, my soul, my mind, my body. :3)</h3>
+       <img class = "lastPic" src="maxresdefault.webp">
+       
+      </div>
+    </div>
+    <button id="showNavBarBtn"> <i class="fas fa-bars"></i></button>
+    <div class="navigation-bar">
+      <button id="firstBtn" class="active" onclick="showPostcard(1)">365 Days Later</button>
+      <button id="secondBtn" onclick="showPostcard(2)">HAPPY 1 YEAR BABY!</button>
+      <button id="thirdBtn" onclick="showPostcard(3)">7th of January</button>
+      <button id="fourthBtn" onclick="showPostcard(4)">Our First Day</button>
+      <button id="fifthBtn" onclick="showPostcard(5)">Our First Meeting</button>
+      <button id="sixthBtn" onclick="showPostcard(6)">Our Beginning</button>
+      <button id="sevenBtn" onclick="showPostcard(7)">Our Adventure</button>
+      <button id="eightBtn" onclick="showPostcard(8)">Our Relationship</button>
+      <button id="nineBtn" onclick="showPostcard(9)">Our First Call</button>
+      <button id="tenBtn" onclick="showPostcard(10)">Our Longer Calls</button>
+      <button id="elevenBtn" onclick="showPostcard(11)">Our Sleep Calls</button>
+      <button id="twelveBtn" onclick="showPostcard(12)">Our Conversations</button>
+      <button id="thirtBtn" onclick="showPostcard(13)">Our Personalities</button>
+      <button id="fourtheenBtn" onclick="showPostcard(14)">Our Love</button>
+      <button id="fifteenBtn" onclick="showPostcard(15)">Our Anniversary</button>
+      <button id="sixteenBtn" onclick="showPostcard(16)">Our Future</button>
+      <button id="seventeenBtn" onclick="showPostcard(17)">You As A Person</button>
+      <button id="eighteenBtn" onclick="showPostcard(18)">You As A Woman</button>
+      <button id="nineteenBtn" onclick="showPostcard(19)">My Little Gift</button>
+      <button id="twentyBtn" onclick="showPostcard(20)">The Finale</button>
+      <button id="twentyBtn" onclick="location.href = 'gallery.html';">Our Journey</button>
+    </div>
+  </div>
+  
+
+  <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const navigationBar = document.querySelector(".navigation-bar");
+  navigationBar.classList.add("hidden"); // Added hidden class initially
+
+  document.getElementById("showNavBarBtn").addEventListener("click", function () {
+    navigationBar.classList.toggle("active"); // Toggle the active class
+  });
+
+
+
+window.addEventListener("load", function () {
+  const firstPostcard = document.getElementById("firstPostcard");
+  firstPostcard.style.display = "block";
+  firstPostcard.classList.add("animate-on-load");
+});
+
+  function addClickEvent(postcardId, nextPostcardId) {
+  const currentPostcard = document.getElementById(postcardId);
+  const nextPostcard = document.getElementById(nextPostcardId);
+
+  currentPostcard.addEventListener("click", function () {
+    setTimeout(function () {currentPostcard.style.display = "none";nextPostcard.style.display = "block";}, 400);
+    currentPostcard.classList.add("clicked-animation");
+    setTimeout(function () {
+      currentPostcard.classList.remove("clicked-animation");
+    }, 500);
+  });
+}
+
+const postcardPairs = [
+  ["firstPostcard", "secondPostcard"],
+  ["secondPostcard", "secondoneCard"],
+  ["secondoneCard", "thirdPostcard"],
+  ["thirdPostcard", "fourthPostcard"],
+  ["fourthPostcard", "fifthPostcard"],
+  ["fifthPostcard", "sixthPostcard"],
+  ["sixthPostcard", "sevenPostcard"],
+  ["sevenPostcard", "eightPostcard"],
+  ["eightPostcard", "ninePostcard"],
+  ["ninePostcard", "tenPostcard"],
+  ["tenPostcard", "elevenPostcard"],
+  ["elevenPostcard", "twelvePostcard"],
+  ["twelvePostcard", "thirteenPostcard"],
+  ["thirteenPostcard", "fourteenPostcard"],
+  ["fourteenPostcard", "fifteenPostcard"],
+  ["fifteenPostcard", "sixteenPostcard"],
+  ["sixteenPostcard", "seventeenPostcard"],
+  ["seventeenPostcard", "eighteenPostcard"],
+  ["eighteenPostcard", "nineteenPostcard"],
+  ["nineteenPostcard", "firstPostcard"],
+
+  // ... other postcard pairs
+];
+
+
+for (let i = 0; i < postcardPairs.length; i++) {
+  const [currentId, nextId] = postcardPairs[i];
+  if (i !== postcardPairs.length - 1) {
+    addClickEvent(currentId, nextId);
+  } else {
+    const lastPostcard = document.getElementById(currentId);
+    lastPostcard.addEventListener('click', function() {
+      window.location.href = 'gallery.html';
+    });
+  }
+}
+
+    var width = getWidth();
+    var height = getHeight();
+    var flakesCount = 70; //70
+    var moveY = 0.7;
+    var moveX = 20;
+    var flakes = [];
+
+    initAnimation();
+
+    function initAnimation() {
+      setInterval(doAnimation, 5);
+      var flakesCounter = 0;
+
+      while (flakesCounter < flakesCount) {
+        var flake = document.createElement("div");
+        flake.className = "flake";
+        flake.style.fontSize = getRandom(12, 60) + "px";
+        flake.style.top = getRandom(0, height) + "px";
+        flake.style.left = getRandom(0, width) + "px";
+        flake.style.color = "#f06292";
+        flake.innerHTML = "&#10084";
+        newFlake = hearts.appendChild(flake);
+        newFlake.speed = getRandom(1, 100);
+        flakes.push(newFlake);
+        flakesCounter++;
+      }
+    }
+    function get(id) {
+      return document.getElementById(id);
+    }
+    function getWidth() {
+      var x = 0;
+      if (self.innerHeight) {
+        x = self.innerWidth;
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientHeight
+      ) {
+        x = document.documentElement.clientWidth;
+      } else if (document.body) {
+        x = document.body.clientWidth;
+      }
+      return x;
+    }
+
+    function getHeight() {
+      var y = 0;
+      if (self.innerHeight) {
+        y = self.innerHeight;
+      } else if (
+        document.documentElement &&
+        document.documentElement.clientHeight
+      ) {
+        y = document.documentElement.clientHeight;
+      } else if (document.body) {
+        y = document.body.clientHeight;
+      }
+      return y;
+    }
+
+    function getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function doAnimation() {
+      for (var i = 0; i < flakes.length; i++) {
+        newX = false;
+        newY = false;
+       
+        newY =
+          parseFloat(flakes[i].style.top) + (flakes[i].speed / 100) * moveY;
+        if (newY > height) {
+          newY = 0 - parseInt(flakes[i].style.fontSize);
+     
+          newX = getRandom(0, width);
+        }
+   
+        if (!newX)
+          newX = parseFloat(flakes[i].style.left) + Math.sin(newY / moveX);
+        if (newX < -20) newX = width + 20;
+        if (newX > width + 20) newX = -20;
+      
+        flakes[i].style.top = newY + "px";
+        flakes[i].style.left = newX + "px";
+      }
+    }
+    const flakeElements = document.querySelectorAll('#hearts .flake');
+
+// Add event listeners to each heart element
+flakeElements.forEach(flake => {
+  flake.addEventListener('mouseenter', () => {
+    // Add the 'hovered' class on hover
+    flake.classList.add('hovered');
+  });
+
+  flake.addEventListener('animationend', () => {
+    // Remove the 'hovered' class after the animation ends
+    flake.classList.remove('hovered');
+  });
+});
+
+    function showPostcard(postcardNumber) {
+var postcards = document.querySelectorAll('.postcard');
+var buttons = document.querySelectorAll('.navigation-bar button');
+
+for (var i = 0; i < postcards.length; i++) {
+  if (i + 1 === postcardNumber) {
+    postcards[i].style.display = 'block';
+    buttons[i].classList.add('active');
+  } else {
+    postcards[i].style.display = 'none';
+    buttons[i].classList.remove('active');
+  }
+}
+}
+
+document.querySelectorAll('.navigation-bar button').forEach((button, index) => {
+button.addEventListener('click', function() {
+  showPostcard(index + 1); // Adjust index to match postcardNumber
+});
+});
+
+document.querySelectorAll('.postcard').forEach((card, index) => {
+card.addEventListener('click', function() {
+  showPostcard(index + 1); // Adjust index to match postcardNumber
+  // Highlight the corresponding button when a postcard is clicked
+  document.querySelectorAll('.navigation-bar button').forEach((button, btnIndex) => {
+    if (btnIndex === index + 1) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+});
+});
+});
+  </script>
 </body>
 </html>
